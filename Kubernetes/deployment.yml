@@ -6,26 +6,21 @@ metadata:
   labels:
     app: boardgame-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: nodejs-app
+      app: boardgame-app
   template:
     metadata:
       labels:
-        app: nodejs-app
+        app: boardgame-app
     spec:
       containers:
-        - name: nodejs-container
-          image: node:18-alpine
+        - name: boardgame-container
+          image: sanketmule/boardgame:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 3000
-          command: ["node", "app.js"]
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "250m"
-              memory: "256Mi"
+            - containerPort: 8080
+          
+        
 
